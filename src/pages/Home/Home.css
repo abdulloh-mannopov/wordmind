@@ -1,0 +1,204 @@
+/* ============================================
+   Home Page — Flashcard Learning View
+   ============================================ */
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  gap: var(--space-xl);
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+/* --- Page title --- */
+.home__heading {
+  text-align: center;
+}
+
+.home__title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.home__subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-xs);
+}
+
+/* --- Card area --- */
+.home__card-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* --- Controls --- */
+.home__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.home__nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 10px 20px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+  min-height: 44px;
+}
+
+.home__nav-btn:hover:not(:disabled) {
+  background-color: var(--color-surface-hover);
+  border-color: var(--color-text-muted);
+}
+
+.home__nav-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.home__nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.home__nav-btn--next {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+}
+
+.home__nav-btn--next:hover:not(:disabled) {
+  background-color: #5a52e0;
+  border-color: #5a52e0;
+}
+
+/* --- Progress --- */
+.home__progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- Keyboard hint --- */
+.home__kbd-hint {
+  display: flex;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.home__kbd-hint span {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.home__kbd-hint kbd {
+  display: inline-block;
+  padding: 1px 6px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  margin-right: 4px;
+}
+
+/* --- Empty state --- */
+.home__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-md);
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+.home__empty-icon {
+  font-size: 2.5rem;
+  opacity: 0.3;
+}
+
+.home__empty-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.home__empty-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  max-width: 320px;
+}
+
+.home__review-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 10px 20px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+  min-height: 44px;
+  margin-top: var(--space-md);
+}
+
+.home__review-all-btn:hover {
+  background-color: var(--color-surface-hover);
+  border-color: var(--color-text-muted);
+}
+
+.home__progress-main {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+  min-width: 52px;
+  text-align: center;
+}
+
+.home__progress-sub {
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .home {
+    gap: var(--space-lg);
+    padding-top: var(--space-lg);
+  }
+
+  .home__controls {
+    gap: var(--space-md);
+  }
+
+  .home__nav-btn {
+    padding: 10px 16px;
+    font-size: var(--font-size-xs);
+  }
+
+  .home__kbd-hint {
+    display: none;
+  }
+}
