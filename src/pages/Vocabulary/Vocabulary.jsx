@@ -146,7 +146,9 @@ function Vocabulary() {
       )}
 
       {/* Toast */}
-      {toast && <div className="vocab__toast" role="status">{toast}</div>}
+      {toast && (
+        <div className="vocab__toast" role="status" aria-live="polite">{toast}</div>
+      )}
     </section>
   );
 }

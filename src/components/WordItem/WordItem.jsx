@@ -5,7 +5,7 @@ function WordItem({ item, onEdit, onDelete }) {
   const [confirming, setConfirming] = useState(false);
 
   return (
-    <div className="word-item">
+    <div className="word-item" role="listitem">
       <div className="word-item__content">
         <div className="word-item__word">{item.word}</div>
         <div className="word-item__translation">{item.translation}</div>

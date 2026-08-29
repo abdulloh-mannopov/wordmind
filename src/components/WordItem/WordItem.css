@@ -7,14 +7,16 @@
   align-items: center;
   gap: var(--space-md);
   padding: var(--space-md) var(--space-lg);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background-color: var(--color-card);
+  border: 1px solid rgba(255,255,255,0.03);
   border-radius: var(--radius-md);
-  transition: border-color 0.15s ease;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 120ms ease;
 }
 
 .word-item:hover {
-  border-color: var(--color-text-muted);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45), 0 0 20px rgba(91,140,255,0.04);
+  border-color: rgba(255,255,255,0.06);
 }
 
 .word-item__content {

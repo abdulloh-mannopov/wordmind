@@ -5,7 +5,7 @@
 .flashcard-wrapper {
   perspective: 1200px;
   width: 100%;
-  max-width: 480px;
+  max-width: 560px;
   aspect-ratio: 3 / 4; /* Increased aspect ratio for more content */
   margin: 0 auto;
   cursor: pointer;
@@ -63,10 +63,10 @@
   border: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
-  background-color: var(--color-surface);
+  background-color: var(--color-card);
   box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(108, 99, 255, 0.06);
+    0 10px 30px rgba(0, 0, 0, 0.45),
+    0 0 40px var(--color-accent-soft);
   overflow-y: auto;
 }
 
@@ -79,8 +79,8 @@
 }
 
 .flashcard__word {
-  font-size: var(--font-size-2xl);
-  font-weight: 700;
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--color-text-primary);
   text-align: center;
@@ -98,11 +98,7 @@
 /* --- Back face --- */
 .flashcard__back {
   transform: rotateY(180deg);
-  background: linear-gradient(
-    170deg,
-    var(--color-surface) 0%,
-    rgba(108, 99, 255, 0.05) 100%
-  );
+  background: linear-gradient(170deg, var(--color-card) 0%, rgba(92,72,200,0.03) 100%);
 }
 
 .flashcard__back-content {
@@ -276,9 +272,14 @@
 }
 
 .flashcard__rating-buttons {
-  display: flex;
-  gap: var(--space-xs);
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  justify-items: stretch;
+  align-items: center;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
 }
 
 .flashcard__rating-btn {
@@ -287,13 +288,20 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-  flex: 1;
-  padding: 8px 4px;
+  padding: 10px 6px;
   background-color: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+.flashcard__rating-btn[aria-pressed="true"],
+.flashcard__rating-btn--active {
+  background: linear-gradient(90deg, rgba(124,92,255,0.12), rgba(91,140,255,0.08));
+  border-color: rgba(124,92,255,0.25);
+  box-shadow: 0 8px 24px rgba(92,72,200,0.08);
+  color: var(--color-text-primary);
 }
 
 .flashcard__rating-btn:hover {
@@ -349,6 +357,13 @@
   color: #10b981;
 }
 
+@media (max-width: 640px) {
+  .flashcard__rating-buttons {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}
+
 /* --- Responsive --- */
 @media (max-width: 640px) {
   .flashcard-wrapper {
@@ -367,6 +382,14 @@
 
   .flashcard__back-content {
     padding: var(--space-lg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flashcard__inner,
+  .flashcard-wrapper:active .flashcard__inner,
+  .flashcard-wrapper:hover .flashcard__inner {
+    transition: none !important;
   }
 }
 

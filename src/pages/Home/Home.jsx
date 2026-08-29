@@ -163,8 +163,11 @@ function Home() {
 
   return (
     <section className="home">
-      <div className="home__heading">
-        <h1 className="home__title">WordMind</h1>
+      <div className="home__heading home__session-header">
+        <div>
+          <h1 className="home__title">TODAY'S SESSION</h1>
+          <p className="home__session-count">{due.length} words remaining</p>
+        </div>
         <p className="home__subtitle">Personal Vocabulary Learning</p>
       </div>
 
@@ -199,6 +202,12 @@ function Home() {
 
         <div className="home__progress" aria-live="polite">
           <div className="home__progress-main">{currentIndex + 1} / {total}</div>
+          <div className="home__progress-bar" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(((currentIndex + 1) / Math.max(total, 1)) * 100)} aria-label={`Session progress ${currentIndex + 1} of ${total}`}>
+            <div
+              className="home__progress-fill"
+              style={{ width: `${Math.round(((currentIndex + 1) / Math.max(total, 1)) * 100)}%` }}
+            />
+          </div>
           <div className="home__progress-sub">Today: {reviewedTodayCount} reviewed</div>
         </div>
 

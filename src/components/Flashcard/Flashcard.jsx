@@ -86,6 +86,9 @@ function Flashcard({ word, translation, example, imagination, onSaveImagination,
     if (onRate) onRate(rating);
   };
 
+  // safe id base for aria attributes (avoid spaces/special chars)
+  const idBase = (word || '').replace(/[^a-z0-9_-]/gi, '-');
+
   return (
     <div
       className="flashcard-wrapper"
@@ -93,6 +96,7 @@ function Flashcard({ word, translation, example, imagination, onSaveImagination,
       onKeyDown={handleKeyDown}
       role="button"
       tabIndex={0}
+      aria-pressed={isFlipped}
       aria-label={
         isFlipped
           ? `${word} — ${translation}. Click to show front.`
@@ -115,9 +119,9 @@ function Flashcard({ word, translation, example, imagination, onSaveImagination,
               {example && <span className="flashcard__example">{example}</span>}
             </div>
 
-            <div className="flashcard__imagination">
+            <div className="flashcard__imagination" role="region" aria-labelledby={`imagination-${idBase}`}>
               <div className="flashcard__imagination-header">
-                <span className="flashcard__imagination-title">🧠 My Imagination</span>
+                <span id={`imagination-${idBase}`} className="flashcard__imagination-title" aria-hidden="false">🧠 My Imagination</span>
                 {imagination && !isEditingImagination && (
                   <button 
                     className="flashcard__imagination-edit flashcard__interactive"
@@ -131,7 +135,9 @@ function Flashcard({ word, translation, example, imagination, onSaveImagination,
 
               {(!imagination || isEditingImagination) ? (
                 <div className="flashcard__imagination-form flashcard__interactive" onClick={e => e.stopPropagation()}>
+                  <label className="sr-only" htmlFor={`imagination-input-${idBase}`}>My imagination for {word}</label>
                   <textarea
+                    id={`imagination-input-${idBase}`}
                     className="flashcard__imagination-input"
                     placeholder="How do you imagine this word?"
                     value={imaginationText}
@@ -140,6 +146,7 @@ function Flashcard({ word, translation, example, imagination, onSaveImagination,
                       if (imaginationError) setImaginationError('');
                     }}
                     onKeyDown={e => e.stopPropagation()}
+                    aria-labelledby={`imagination-${word}`}
                   />
                   {imaginationError && <span className="flashcard__imagination-error">{imaginationError}</span>}
                   <div className="flashcard__imagination-actions">
@@ -159,27 +166,27 @@ function Flashcard({ word, translation, example, imagination, onSaveImagination,
             </div>
 
             {/* Rating Buttons */}
-            <div className="flashcard__rating-section flashcard__interactive" onClick={e => e.stopPropagation()}>
-              <p className="flashcard__rating-title">How well did you know this?</p>
-              <div className="flashcard__rating-buttons">
-                <button className="flashcard__rating-btn flashcard__rating-btn--again" onClick={(e) => handleRate(e, 'again')}>
-                  <span className="flashcard__rating-icon">❌</span>
-                  <span className="flashcard__rating-label">Again</span>
-                </button>
-                <button className="flashcard__rating-btn flashcard__rating-btn--hard" onClick={(e) => handleRate(e, 'hard')}>
-                  <span className="flashcard__rating-icon">😐</span>
-                  <span className="flashcard__rating-label">Hard</span>
-                </button>
-                <button className="flashcard__rating-btn flashcard__rating-btn--good" onClick={(e) => handleRate(e, 'good')}>
-                  <span className="flashcard__rating-icon">✅</span>
-                  <span className="flashcard__rating-label">Good</span>
-                </button>
-                <button className="flashcard__rating-btn flashcard__rating-btn--easy" onClick={(e) => handleRate(e, 'easy')}>
-                  <span className="flashcard__rating-icon">🟢</span>
-                  <span className="flashcard__rating-label">Easy</span>
-                </button>
+              <div className="flashcard__rating-section flashcard__interactive" onClick={e => e.stopPropagation()}>
+                <p className="flashcard__rating-title" id={`rating-${idBase}`}>How well did you know this?</p>
+                <div className="flashcard__rating-buttons" role="group" aria-labelledby={`rating-${idBase}`}>
+                  <button className="flashcard__rating-btn flashcard__rating-btn--again" onClick={(e) => handleRate(e, 'again')} aria-label={`Rate ${word} — Again (1)`}> 
+                    <span className="flashcard__rating-icon" aria-hidden="true">❌</span>
+                    <span className="flashcard__rating-label">Again</span>
+                  </button>
+                  <button className="flashcard__rating-btn flashcard__rating-btn--hard" onClick={(e) => handleRate(e, 'hard')} aria-label={`Rate ${word} — Hard (2)`}>
+                    <span className="flashcard__rating-icon" aria-hidden="true">😐</span>
+                    <span className="flashcard__rating-label">Hard</span>
+                  </button>
+                  <button className="flashcard__rating-btn flashcard__rating-btn--good" onClick={(e) => handleRate(e, 'good')} aria-label={`Rate ${word} — Good (3)`}>
+                    <span className="flashcard__rating-icon" aria-hidden="true">✅</span>
+                    <span className="flashcard__rating-label">Good</span>
+                  </button>
+                  <button className="flashcard__rating-btn flashcard__rating-btn--easy" onClick={(e) => handleRate(e, 'easy')} aria-label={`Rate ${word} — Easy (4)`}>
+                    <span className="flashcard__rating-icon" aria-hidden="true">🟢</span>
+                    <span className="flashcard__rating-label">Easy</span>
+                  </button>
+                </div>
               </div>
-            </div>
 
           </div>
         </div>

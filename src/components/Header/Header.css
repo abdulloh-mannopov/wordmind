@@ -1,7 +1,8 @@
 .header {
   height: var(--header-height);
   border-bottom: 1px solid var(--color-border);
-  background-color: var(--color-surface);
+  background-color: rgba(11,13,18,0.6);
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   position: sticky;
@@ -23,21 +24,37 @@
 }
 
 .header__logo-icon {
-  width: 28px;
-  height: 28px;
-  background: linear-gradient(135deg, var(--color-accent), #a78bfa);
-  border-radius: var(--radius-sm);
+  width: 34px;
+  height: 34px;
+  background-color: var(--color-card-elevated);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: var(--font-size-sm);
-  color: #fff;
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45), 0 0 20px var(--color-accent-soft);
+  border: 1px solid rgba(124,92,255,0.08);
+}
+
+.header__logo-icon::after {
+  content: "";
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  filter: blur(14px);
+  background: linear-gradient(90deg, rgba(124,92,255,0.06), rgba(91,140,255,0.04));
+  z-index: -1;
+  left: -5px;
+  top: -5px;
+  pointer-events: none;
 }
 
 .header__logo-text {
-  font-size: var(--font-size-lg);
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--color-text-primary);
   letter-spacing: -0.02em;
 }
@@ -49,20 +66,22 @@
   gap: var(--space-xs);
 }
 
+.header__inner { padding-inline: var(--space-lg); }
+
 .header__nav-link {
-  padding: 6px 14px;
-  font-size: var(--font-size-sm);
-  font-weight: 500;
+  padding: 6px 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--color-text-secondary);
-  background: none;
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  transition: color 0.15s ease, background-color 0.15s ease, transform 0.12s ease;
 }
 
 .header__nav-link:hover {
   color: var(--color-text-primary);
-  background-color: var(--color-surface-hover);
+  transform: translateY(-1px);
 }
 
 .header__nav-link:focus-visible {
@@ -71,9 +90,9 @@
 }
 
 .header__nav-link--active {
-  color: var(--color-text-primary);
-  background-color: var(--color-accent-soft);
-  border-color: rgba(108, 99, 255, 0.2);
+  color: #fff;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2));
+  box-shadow: 0 6px 18px rgba(124,92,255,0.12);
 }
 
 @media (max-width: 640px) {

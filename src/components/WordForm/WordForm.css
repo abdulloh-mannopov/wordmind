@@ -14,8 +14,8 @@
 }
 
 .word-form {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background-color: var(--color-card-elevated);
+  border: 1px solid rgba(255,255,255,0.04);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
   width: 100%;
@@ -107,8 +107,8 @@
 }
 
 .word-form__btn--primary {
-  background-color: var(--color-accent);
-  border-color: var(--color-accent);
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2));
+  border-color: transparent;
   color: #fff;
 }
 

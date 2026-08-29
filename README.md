@@ -42,6 +42,18 @@ To create an optimized production build:
 npm run build
 ```
 
+## Desktop Application
+
+WordMind can run as a native Windows desktop application using Tauri 2.
+
+- Development (browser): `npm run dev` continues to run the normal Vite React app.
+- Desktop development: `npm run tauri:dev` will run the app inside the Tauri shell (requires Tauri CLI and Rust toolchain).
+- Desktop build: `npm run tauri:build` builds a Windows desktop artifact (requires Rust, Cargo, and Windows build tools).
+
+Data storage: the app continues to use localStorage for vocabulary, imagination, review, and statistics. Data persists between launches of the desktop app on the same device.
+
+See the project docs for details and system requirements.
+
 ## Note on Data Storage
 
 WordMind is designed as a strict client-side application. It stores your vocabulary securely in the browser. It does not synchronize with the cloud, ensuring total privacy and instantaneous performance.

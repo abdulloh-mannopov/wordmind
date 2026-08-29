@@ -13,18 +13,21 @@ function Header({ currentPage, onNavigate }) {
           <button
             className={`header__nav-link${currentPage === 'learn' ? ' header__nav-link--active' : ''}`}
             onClick={() => onNavigate('learn')}
+            aria-current={currentPage === 'learn' ? 'page' : undefined}
           >
             Learn
           </button>
           <button
             className={`header__nav-link${currentPage === 'vocabulary' ? ' header__nav-link--active' : ''}`}
             onClick={() => onNavigate('vocabulary')}
+            aria-current={currentPage === 'vocabulary' ? 'page' : undefined}
           >
             Vocabulary
           </button>
           <button
             className={`header__nav-link${currentPage === 'statistics' ? ' header__nav-link--active' : ''}`}
             onClick={() => onNavigate('statistics')}
+            aria-current={currentPage === 'statistics' ? 'page' : undefined}
           >
             Statistics
           </button>

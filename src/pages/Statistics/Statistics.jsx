@@ -68,10 +68,15 @@ function Statistics({ onNavigate }) {
             <span>Learned / Total</span>
             <span>{stats.learned} / {stats.totalWords} ({progressPercent}%)</span>
           </div>
-          <div className="stats__progress-bar-bg" aria-hidden="true">
+          <div className="stats__progress-bar-bg">
             <div 
               className="stats__progress-bar-fill" 
               style={{ width: `${progressPercent}%` }}
+              role="progressbar"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={progressPercent}
+              aria-label={`Learning progress ${progressPercent} percent`}
             ></div>
           </div>
         </div>

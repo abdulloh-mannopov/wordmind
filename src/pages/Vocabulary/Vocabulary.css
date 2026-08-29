@@ -53,6 +53,10 @@
   background-color: #5a52e0;
 }
 
+.vocab__add-btn {
+  box-shadow: 0 8px 24px rgba(91,140,255,0.08), 0 2px 6px rgba(0,0,0,0.4);
+}
+
 .vocab__add-btn:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
@@ -99,6 +103,11 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+}
+
+/* Make list items a bit more elevated */
+.vocab__list .word-item {
+  background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
 }
 
 /* --- Empty state --- */

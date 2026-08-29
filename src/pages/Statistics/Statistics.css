@@ -39,8 +39,8 @@
 
 /* --- Cards --- */
 .stats__card {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: linear-gradient(180deg, var(--color-card) 0%, var(--color-card-elevated) 100%);
+  border: 1px solid rgba(255,255,255,0.03);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
   display: flex;

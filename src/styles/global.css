@@ -4,16 +4,21 @@
 
 /* --- CSS Custom Properties --- */
 :root {
-  /* Colors */
-  --color-bg: #0f1117;
-  --color-surface: #1a1d27;
-  --color-surface-hover: #222632;
-  --color-border: #2a2e3b;
-  --color-text-primary: #e8eaf0;
-  --color-text-secondary: #8b90a0;
-  --color-text-muted: #5c6070;
-  --color-accent: #6c63ff;
-  --color-accent-soft: rgba(108, 99, 255, 0.12);
+  /* Colors (Design System) */
+  --color-bg: #0B0D12; /* base background */
+  --color-bg-2: #11141C; /* secondary background */
+  --color-card: #171B25; /* card background */
+  --color-card-elevated: #1C2130; /* elevated card */
+  --color-border: rgba(255,255,255,0.08);
+  --color-text-primary: #F5F7FB;
+  --color-text-secondary: #9AA3B2;
+  --color-text-muted: #656D7C;
+  --color-accent: #7C5CFF; /* primary purple */
+  --color-accent-2: #5B8CFF; /* secondary blue */
+  --color-accent-soft: rgba(124,92,255,0.10);
+  --color-success: #35D07F;
+  --color-warning: #F5B84B;
+  --color-error: #FF5C6C;
 
   /* Typography */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -24,6 +29,14 @@
   --font-size-xl: 1.5rem;
   --font-size-2xl: 2rem;
   --font-size-3xl: 2.75rem;
+
+  /* Surface colors for elevated panels */
+  --color-surface: rgba(255,255,255,0.02);
+  --color-surface-hover: rgba(255,255,255,0.03);
+  --color-surface-elevated: rgba(255,255,255,0.025);
+
+  /* Medium font size (used in some pages) */
+  --font-size-md: 1.125rem;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -86,6 +99,24 @@ img {
 button {
   font-family: inherit;
   cursor: pointer;
+}
+
+/* Focus styles for keyboard users */
+:focus {
+  outline: 3px solid color-mix(in srgb, var(--color-accent) 60%, transparent);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 
 /* --- Utility: Container --- */

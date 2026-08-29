@@ -7,20 +7,42 @@ function WordForm({ initialData, onSave, onCancel }) {
   const [example, setExample] = useState(initialData?.example || '');
   const [errors, setErrors] = useState({});
   const firstInputRef = useRef(null);
+  const dialogRef = useRef(null);
+  const openerRef = useRef(null);
 
   const isEdit = Boolean(initialData);
 
   useEffect(() => {
+    // remember opener to return focus on close
+    openerRef.current = document.activeElement;
     firstInputRef.current?.focus();
+    return () => {
+      try { openerRef.current?.focus(); } catch (err) {}
+    };
   }, []);
 
   /* Close on Escape */
   useEffect(() => {
-    function handleKey(e) {
+    if (firstInputRef.current) firstInputRef.current.focus();
+
+    function esc(e) {
       if (e.key === 'Escape') onCancel();
     }
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
+
+    // simple focus trap: keep focus inside dialog
+    function trap(e) {
+      if (!dialogRef.current) return;
+      if (!dialogRef.current.contains(document.activeElement)) {
+        firstInputRef.current && firstInputRef.current.focus();
+      }
+    }
+
+    window.addEventListener('keydown', esc);
+    window.addEventListener('focusin', trap);
+    return () => {
+      window.removeEventListener('keydown', esc);
+      window.removeEventListener('focusin', trap);
+    };
   }, [onCancel]);
 
   function validate() {
@@ -43,9 +65,9 @@ function WordForm({ initialData, onSave, onCancel }) {
   }
 
   return (
-    <div className="word-form-overlay" onClick={handleOverlayClick} role="dialog" aria-modal="true" aria-label={isEdit ? 'Edit word' : 'Add new word'}>
+    <div className="word-form-overlay" onClick={handleOverlayClick} role="dialog" aria-modal="true" aria-labelledby="wordform-title" ref={dialogRef}>
       <form className="word-form" onSubmit={handleSubmit} noValidate>
-        <h2 className="word-form__title">{isEdit ? 'Edit Word' : 'Add New Word'}</h2>
+        <h2 id="wordform-title">{isEdit ? 'Edit Word' : 'Add New Word'}</h2>
 
         <div className="word-form__field">
           <label className="word-form__label" htmlFor="wf-word">English Word</label>
